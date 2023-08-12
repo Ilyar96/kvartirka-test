@@ -1,0 +1,74 @@
+.asteroidItem {
+	margin-top: 1.5rem;
+	list-style: none;
+}
+
+.date {
+	font-size: 1.5rem;
+	font-weight: 700;
+	line-height: 2rem;
+}
+
+.info {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.distance {
+	position: relative;
+	margin-bottom: 0.5rem;
+}
+
+.distance::after {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	content: "";
+	display: block;
+	width: 100%;
+	height: 0;
+	padding-bottom: 7%;
+	margin-top: 0.5rem;
+
+	background: url('../../assets/svg/distance-arrow.svg') center no-repeat;
+	background-size: contain;
+}
+
+.data {
+	display: flex;
+	align-items: center;
+	margin-left: 0.5rem;
+}
+
+.right {
+	margin-left: 0.5rem;
+}
+
+.name {
+	font-size: 1rem;
+	font-weight: 700;
+}
+
+.diameter {
+	font-size: 0.75rem;
+	line-height: 1rem;
+}
+
+.bottom {
+	display: flex;
+	align-items: center;
+	margin-top: 0.875rem;
+}
+
+.danger {
+	width: 4.1875rem;
+	height: auto;
+	object-fit: contain;
+	margin-left: 0.625rem;
+}
+
+.btn {
+	text-transform: uppercase;
+}

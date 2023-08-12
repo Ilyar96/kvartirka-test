@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import cn from "classnames";
-import { ContainerProps } from "./Container.type";
+import { ContainerProps } from "./Container.prop";
 import styles from "./Container.module.css";
 
 export const Container: FC<ContainerProps> = ({

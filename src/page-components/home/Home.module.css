@@ -1,0 +1,68 @@
+.container {
+	position: relative;
+	z-index: 1;
+}
+
+.content {
+	max-width: 412px;
+}
+
+@media (min-width: 374.98px) {
+	.container {
+		padding-left: 4.5rem;
+	}
+
+	.root::before {
+		position: fixed;
+		top: 50%;
+		left: calc((100vw - 55.275rem) / 2);
+		z-index: -1;
+		content: "";
+		display: block;
+		width: 23.5625rem;
+		height: 27.25rem;
+		background: url('../../assets/img/Earth.jpg') left center no-repeat;
+		background-size: contain;
+		transform: translate(0, -50%);
+	}
+}
+
+@media (min-width: 399.98px) {
+	.root::before {
+		left: calc((100vw - 58.275rem) / 2);
+	}
+}
+
+@media (min-width: 575.98px) {
+	.root::before {
+		transform: translate(0, calc(-50% + 69px));
+	}
+}
+
+@media (min-width: 1024.98px) {
+	.container {
+		padding-left: 22.6rem;
+	}
+
+	.root::before {
+		left: 0;
+	}
+}
+
+@media (min-width: 1355.98px) {
+	.container {
+		padding-left: 33rem;
+	}
+
+	.root::before {
+		width: 33.5rem;
+		height: 38.75rem;
+	}
+
+}
+
+@media (max-width: 1024.98px) {
+	.container {
+		max-width: 25rem;
+	}
+}
