@@ -2,10 +2,13 @@
 	display: inline-block;
 	font-family: var(--font-family);
 	font-weight: 700;
-	letter-spacing: 0.0625rem;
 	border: none;
 	transition: color 0.3s ease, background-color 0.3s ease;
 	cursor: pointer;
+}
+
+.btn:active {
+	transform: translate(0, -1px);
 }
 
 .primary {

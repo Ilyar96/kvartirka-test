@@ -71,4 +71,5 @@
 
 .btn {
 	text-transform: uppercase;
+	letter-spacing: 0.0625rem;
 }

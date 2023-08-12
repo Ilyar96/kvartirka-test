@@ -1,0 +1,36 @@
+.cart {
+	position: fixed;
+	z-index: 5;
+	display: grid;
+	gap: 2.4rem;
+	padding: 1rem;
+	background: #232526;
+}
+
+.count {
+	margin-top: 0.3rem;
+}
+
+@media (max-width: 1024.98px) {
+	.cart {
+		bottom: 0;
+		left: 0;
+		right: 0;
+		grid-template-columns: repeat(2, auto);
+		justify-content: space-between;
+	}
+}
+
+@media (min-width: 1024.98px) {
+	.cart {
+		top: 8.375rem;
+		left: 47.75rem;
+		border-radius: 1.5rem;
+	}
+}
+
+@media (min-width: 1355.98px) {
+	.cart {
+		left: 58.125rem;
+	}
+}
