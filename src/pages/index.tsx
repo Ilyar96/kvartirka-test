@@ -1,25 +1,27 @@
+import { FC } from "react";
 import { GetStaticProps } from "next";
 import { HomePage } from "../page-components/home/Home";
-// import styles from "@/styles/Home.module.css";
 import { withLayout } from "@/hok";
 import neoAsteroidService from "@/services/neoAsteroidService";
 import { HomeProps } from "@/@types/common";
-import { FC } from "react";
+import { sortNeoAsteroidListByDateCallback } from "@/helpers";
 
-const Home: FC<HomeProps> = ({ nearEarthObjects }) => {
+const Home: FC<HomeProps> = ({ asteroids }) => {
 	return (
 		<>
-			<HomePage nearEarthObjects={nearEarthObjects} />
+			<HomePage asteroids={asteroids} />
 		</>
 	);
 };
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 	const data = await neoAsteroidService.getAll();
+	const asteroids = Object.values(data.near_earth_objects).flat(1);
+	asteroids.sort(sortNeoAsteroidListByDateCallback);
 
 	return {
 		props: {
-			nearEarthObjects: data.near_earth_objects,
+			asteroids,
 		},
 	};
 };

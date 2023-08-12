@@ -73,3 +73,10 @@
 	text-transform: uppercase;
 	letter-spacing: 0.0625rem;
 }
+
+.btn.added {
+	color: var(--white-base);
+	background: var(--orange-base);
+	cursor: default;
+	pointer-events: none;
+}

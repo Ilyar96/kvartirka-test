@@ -1,10 +1,11 @@
+import { CartContextProvider } from "@/context/CartContext";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
-		<>
+		<CartContextProvider>
 			<Head>
 				<title>
 					Онлайн-сервис по мониторингу и уничтожению опасных астероидов
@@ -14,6 +15,6 @@ export default function App({ Component, pageProps }: AppProps) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<Component {...pageProps} />
-		</>
+		</CartContextProvider>
 	);
 }

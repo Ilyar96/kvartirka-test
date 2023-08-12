@@ -4,9 +4,7 @@ import { HomeProps } from "@/@types/common";
 import { Container, Htag } from "@/components/ui";
 import styles from "./Home.module.css";
 
-export const HomePage: FC<HomeProps> = ({ nearEarthObjects }) => {
-	const asteroids = Object.values(nearEarthObjects).flat(1);
-
+export const HomePage: FC<HomeProps> = ({ asteroids }) => {
 	return (
 		<div className={styles.root}>
 			<Container className={styles.container}>

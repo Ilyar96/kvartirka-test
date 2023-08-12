@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import Image from "next/image";
 import cn from "classnames";
 import { AsteroidItemProps } from "./AsteroidItem.prop";
@@ -7,6 +7,7 @@ import { Button, Htag } from "../ui";
 import asteroidUrl from "@/assets/img/asteroid.png";
 import dangerUrl from "@/assets/img/danger.png";
 import styles from "./AsteroidItem.module.css";
+import { CartContext } from "@/context/CartContext";
 
 export const AsteroidItem: FC<AsteroidItemProps> = ({
 	data,
@@ -14,8 +15,14 @@ export const AsteroidItem: FC<AsteroidItemProps> = ({
 	className,
 	measurement,
 }) => {
+	const { addToCart, cartItems } = useContext(CartContext);
 	const date = new Date(data.close_approach_data[0].close_approach_date);
 	const isSmall = data.estimated_diameter.meters.estimated_diameter_max <= 200;
+	const isAddedToCart = cartItems.find((item) => item.id === data.id);
+
+	const onClick = () => {
+		addToCart(data);
+	};
 
 	return (
 		<Component className={cn(styles.asteroidItem, className)} key={data.id}>
@@ -51,19 +58,25 @@ export const AsteroidItem: FC<AsteroidItemProps> = ({
 				</div>
 			</div>
 			<div className={styles.bottom}>
-				<Button className={styles.btn} appearance="secondary" size="small">
-					Заказать
+				<Button
+					className={cn(styles.btn, { [styles.added]: isAddedToCart })}
+					appearance="secondary"
+					size="small"
+					onClick={onClick}
+					disabled={isAddedToCart}
+				>
+					{isAddedToCart ? "В корзине" : "Заказать"}
 				</Button>
-				<Image
-					className={styles.danger}
-					src={dangerUrl}
-					width={67}
-					height={20}
-					alt="Опасно"
-				/>
+				{data.is_potentially_hazardous_asteroid && (
+					<Image
+						className={styles.danger}
+						src={dangerUrl}
+						width={67}
+						height={20}
+						alt="Опасно"
+					/>
+				)}
 			</div>
-			{/* {data.is_potentially_hazardous_asteroid && (
-			)} */}
 		</Component>
 	);
 };

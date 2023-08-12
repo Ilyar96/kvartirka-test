@@ -1,7 +1,7 @@
-import { NearEarthObjects } from "./asteroid";
+import { Asteroid, NearEarthObjects } from "./asteroid";
 
 export interface HomeProps extends Record<string, unknown> {
-	nearEarthObjects: NearEarthObjects;
+	asteroids: Asteroid[];
 }
 
 export type MeasurementValue = "kilometers" | "lunar";
