@@ -1,12 +1,18 @@
 import React, { FC, useContext } from "react";
-import { Button } from "../ui";
+import { useRouter } from "next/router";
 import { CartContext } from "@/context/CartContext";
+import { Button } from "../ui";
+import { declinationOfNum } from "@/helpers/declinationOfNum";
 import styles from "./Cart.module.css";
-import { declinationOfNum } from "../../helpers/declinationOfNum";
 
 export const Cart: FC = () => {
+	const { push } = useRouter();
 	const { cartItems } = useContext(CartContext);
 	const count = cartItems.length;
+
+	const onClick = () => {
+		push("/send");
+	};
 
 	return (
 		<div className={styles.cart}>
@@ -17,7 +23,9 @@ export const Cart: FC = () => {
 					{declinationOfNum(count, ["астероид", "астероида", "астероидов"])}
 				</div>
 			</div>
-			<Button className={styles.btn}>Отправить</Button>
+			<Button className={styles.btn} onClick={onClick}>
+				Отправить
+			</Button>
 		</div>
 	);
 };

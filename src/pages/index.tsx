@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { GetStaticProps } from "next";
-import { HomePage } from "../page-components/home/Home";
+import { HomePage } from "@/page-components";
 import { withLayout } from "@/hok";
 import neoAsteroidService from "@/services/neoAsteroidService";
 import { HomeProps } from "@/@types/common";

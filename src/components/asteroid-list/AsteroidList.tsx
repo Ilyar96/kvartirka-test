@@ -1,12 +1,13 @@
 import React, { FC, Fragment, useEffect, useRef, useState } from "react";
 import cn from "classnames";
+import { useRouter } from "next/router";
 import { MeasurementValue } from "@/@types/common";
 import { measurementValueList } from "@/constants";
 import { AsteroidListProps } from "./AsteroidList.props";
 import { AsteroidItem } from "..";
-import styles from "./AsteroidList.module.css";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { Spinner } from "../ui";
+import styles from "./AsteroidList.module.css";
 
 export const AsteroidList: FC<AsteroidListProps> = ({
 	data,
@@ -14,12 +15,14 @@ export const AsteroidList: FC<AsteroidListProps> = ({
 	changePage,
 	isLastPage = false,
 }) => {
+	const { pathname } = useRouter();
 	const [isLoading, setIsLoading] = useState(false);
 	const [measurement, setMeasurement] =
 		useState<MeasurementValue>("kilometers");
 	const ref = useRef<HTMLDivElement | null>(null);
 	const entry = useIntersectionObserver(ref, {});
 	const isVisible = !!entry?.isIntersecting;
+	const isSendPage = pathname === "/send";
 
 	useEffect(() => {
 		if (!isVisible || !changePage || !isInfiniteScroll) {
@@ -41,22 +44,24 @@ export const AsteroidList: FC<AsteroidListProps> = ({
 
 	return (
 		<div className={styles.root}>
-			<div className={styles.measurement}>
-				{measurementValueList.map((item, i) => (
-					<Fragment key={item.value + i}>
-						{i !== 0 && <span className={styles.separator}> | </span>}
-						<button
-							className={cn(styles.measurementValue, {
-								[styles.active]: measurement === item.value,
-							})}
-							onClick={measurementChangeHandler(item.value)}
-							type="button"
-						>
-							{item.label}
-						</button>
-					</Fragment>
-				))}
-			</div>
+			{!isSendPage && (
+				<div className={styles.measurement}>
+					{measurementValueList.map((item, i) => (
+						<Fragment key={item.value + i}>
+							{i !== 0 && <span className={styles.separator}> | </span>}
+							<button
+								className={cn(styles.measurementValue, {
+									[styles.active]: measurement === item.value,
+								})}
+								onClick={measurementChangeHandler(item.value)}
+								type="button"
+							>
+								{item.label}
+							</button>
+						</Fragment>
+					))}
+				</div>
+			)}
 
 			<ul className={styles.asteroidList}>
 				{data.map((asteroid) => (

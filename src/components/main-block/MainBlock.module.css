@@ -7,6 +7,10 @@
 	max-width: 19.375rem;
 }
 
+.backBtn {
+	margin-top: 3rem;
+}
+
 @media (min-width: 374.98px) {
 	.container {
 		padding-left: 4.5rem;

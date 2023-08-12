@@ -1,13 +1,14 @@
 import React, { FC, useContext } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import cn from "classnames";
 import { AsteroidItemProps } from "./AsteroidItem.prop";
 import { formatDate, formatDistance } from "@/helpers";
 import { Button, Htag } from "../ui";
 import asteroidUrl from "@/assets/img/asteroid.png";
 import dangerUrl from "@/assets/img/danger.png";
-import styles from "./AsteroidItem.module.css";
 import { CartContext } from "@/context/CartContext";
+import styles from "./AsteroidItem.module.css";
 
 export const AsteroidItem: FC<AsteroidItemProps> = ({
 	data,
@@ -15,10 +16,13 @@ export const AsteroidItem: FC<AsteroidItemProps> = ({
 	className,
 	measurement,
 }) => {
+	const { pathname } = useRouter();
 	const { addToCart, cartItems } = useContext(CartContext);
 	const date = new Date(data.close_approach_data[0].close_approach_date);
 	const isSmall = data.estimated_diameter.meters.estimated_diameter_max <= 200;
 	const isAddedToCart = cartItems.find((item) => item.id === data.id);
+	const isSendPage = pathname === "/send";
+	const isHazardous = data.is_potentially_hazardous_asteroid;
 
 	const onClick = () => {
 		addToCart(data);
@@ -57,26 +61,30 @@ export const AsteroidItem: FC<AsteroidItemProps> = ({
 					</div>
 				</div>
 			</div>
-			<div className={styles.bottom}>
-				<Button
-					className={cn(styles.btn, { [styles.added]: isAddedToCart })}
-					appearance="secondary"
-					size="small"
-					onClick={onClick}
-					disabled={isAddedToCart}
-				>
-					{isAddedToCart ? "В корзине" : "Заказать"}
-				</Button>
-				{data.is_potentially_hazardous_asteroid && (
-					<Image
-						className={styles.danger}
-						src={dangerUrl}
-						width={67}
-						height={20}
-						alt="Опасно"
-					/>
-				)}
-			</div>
+			{(isHazardous || !isSendPage) && (
+				<div className={styles.bottom}>
+					{!isSendPage && (
+						<Button
+							className={cn(styles.btn, { [styles.added]: isAddedToCart })}
+							appearance="secondary"
+							size="small"
+							onClick={onClick}
+							disabled={Boolean(isAddedToCart)}
+						>
+							{isAddedToCart ? "В корзине" : "Заказать"}
+						</Button>
+					)}
+					{isHazardous && (
+						<Image
+							className={styles.danger}
+							src={dangerUrl}
+							width={67}
+							height={20}
+							alt="Опасно"
+						/>
+					)}
+				</div>
+			)}
 		</Component>
 	);
 };
