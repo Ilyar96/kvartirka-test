@@ -27,3 +27,12 @@
 	font-weight: 700;
 	text-decoration: none;
 }
+
+.bottom {
+	opacity: 0;
+	height: 1px;
+}
+
+.spinner {
+	margin-top: 1rem;
+}

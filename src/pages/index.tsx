@@ -5,6 +5,7 @@ import { withLayout } from "@/hok";
 import neoAsteroidService from "@/services/neoAsteroidService";
 import { HomeProps } from "@/@types/common";
 import { sortNeoAsteroidListByDateCallback } from "@/helpers";
+import { Asteroid } from "@/@types/asteroid";
 
 const Home: FC<HomeProps> = ({ asteroids }) => {
 	return (
@@ -15,9 +16,15 @@ const Home: FC<HomeProps> = ({ asteroids }) => {
 };
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-	const data = await neoAsteroidService.getAll();
-	const asteroids = Object.values(data.near_earth_objects).flat(1);
-	asteroids.sort(sortNeoAsteroidListByDateCallback);
+	let asteroids: Asteroid[] = [];
+
+	try {
+		const data = await neoAsteroidService.getAll();
+		asteroids = Object.values(data.near_earth_objects).flat(1);
+		asteroids.sort(sortNeoAsteroidListByDateCallback);
+	} catch (error) {
+		console.error((error as Error).message);
+	}
 
 	return {
 		props: {
