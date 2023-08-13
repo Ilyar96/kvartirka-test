@@ -1,26 +1,23 @@
 import React, { FC, useEffect, useRef, useState } from "react";
-import { useRouter } from "next/router";
 import { MeasurementValue } from "@/@types/common";
-import { AsteroidListProps } from "./AsteroidList.props";
-import { AsteroidItem, MeasurementTabs } from "..";
+import { AsteroidApproachListProps } from "./AsteroidApproachList.props";
+import { MeasurementTabs, ApproachItem } from "..";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { Spinner } from "../ui";
-import styles from "./AsteroidList.module.css";
+import styles from "./AsteroidApproachList.module.css";
 
-export const AsteroidList: FC<AsteroidListProps> = ({
+export const AsteroidApproachList: FC<AsteroidApproachListProps> = ({
 	data,
 	isInfiniteScroll = false,
 	changePage,
 	isLastPage = false,
 }) => {
-	const { pathname } = useRouter();
 	const [isLoading, setIsLoading] = useState(false);
 	const [measurement, setMeasurement] =
 		useState<MeasurementValue>("kilometers");
 	const ref = useRef<HTMLDivElement | null>(null);
 	const entry = useIntersectionObserver(ref, {});
 	const isVisible = !!entry?.isIntersecting;
-	const isSendPage = pathname === "/send";
 
 	useEffect(() => {
 		if (!isVisible || !changePage || !isInfiniteScroll) {
@@ -34,6 +31,7 @@ export const AsteroidList: FC<AsteroidListProps> = ({
 			setIsLoading(false);
 			clearTimeout(timer);
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isVisible]);
 
 	const measurementChangeHandler = (value: MeasurementValue) => {
@@ -42,20 +40,14 @@ export const AsteroidList: FC<AsteroidListProps> = ({
 
 	return (
 		<div className={styles.root}>
-			{!isSendPage && (
-				<MeasurementTabs
-					value={measurement}
-					changeValue={measurementChangeHandler}
-				/>
-			)}
+			<MeasurementTabs
+				value={measurement}
+				changeValue={measurementChangeHandler}
+			/>
 
 			<ul className={styles.asteroidList}>
-				{data.map((asteroid) => (
-					<AsteroidItem
-						data={asteroid}
-						measurement={measurement}
-						key={asteroid.id}
-					/>
+				{data.map((asteroid, i) => (
+					<ApproachItem data={asteroid} measurement={measurement} key={i} />
 				))}
 			</ul>
 			<div className={styles.bottom} ref={ref} />

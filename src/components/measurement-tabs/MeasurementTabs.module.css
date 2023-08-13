@@ -1,0 +1,29 @@
+.measurement {
+	margin-top: 0.5rem;
+}
+
+.measurementValue {
+	color: var(--white-base);
+	border: none;
+	background: none;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+@media (any-hover: hover) {
+	.measurementValue:hover {
+		text-decoration: none;
+	}
+}
+
+.measurementValue,
+.separator {
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5rem;
+}
+
+.measurementValue.active {
+	font-weight: 700;
+	text-decoration: none;
+}

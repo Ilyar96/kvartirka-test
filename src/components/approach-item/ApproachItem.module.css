@@ -1,0 +1,34 @@
+.asteroidItem {
+	max-width: max-content;
+	margin-top: 1.5rem;
+	list-style: none;
+}
+
+.date {
+	font-size: 1.5rem;
+	font-weight: 700;
+	line-height: 2rem;
+}
+
+.info {
+	display: inline-flex;
+	flex-direction: column;
+}
+
+.distance {
+	position: relative;
+}
+
+.data {
+	display: flex;
+	flex-direction: column;
+	margin-top: 0.5rem;
+}
+
+.subtitle {
+	font-weight: 700;
+}
+
+.data>*+* {
+	margin-top: 0.2rem;
+}

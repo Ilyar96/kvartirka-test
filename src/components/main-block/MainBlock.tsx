@@ -10,18 +10,12 @@ export const MainBlock: FC<MainBlockProps> = ({
 	title,
 	isNeedCart = true,
 	isNeedPaginate = true,
-	isSendPage = false,
 }) => {
-	const { back } = useRouter();
 	const [page, setPage] = useState(1);
 	const paginatedData = asteroids.slice(0, page * 10);
 
 	const changePage = () => {
 		setPage((prev) => ++prev);
-	};
-
-	const onClick = () => {
-		back();
 	};
 
 	return (
@@ -37,11 +31,6 @@ export const MainBlock: FC<MainBlockProps> = ({
 								changePage={changePage}
 								isLastPage={asteroids.length === paginatedData.length}
 							/>
-							{isSendPage && (
-								<Button className={styles.backBtn} onClick={onClick}>
-									Вернуться назад
-								</Button>
-							)}
 						</>
 					) : (
 						<Htag tag="h1">Ничего не найдено</Htag>

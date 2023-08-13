@@ -1,13 +1,14 @@
 import React, { FC, useContext } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import cn from "classnames";
 import { AsteroidItemProps } from "./AsteroidItem.prop";
-import { formatDate, formatDistance } from "@/helpers";
+import { formatDate, formatNum } from "@/helpers";
 import { Button, Htag } from "../ui";
 import asteroidUrl from "@/assets/img/asteroid.png";
-import dangerUrl from "@/assets/img/danger.png";
 import { CartContext } from "@/context/CartContext";
+import dangerUrl from "@/assets/img/danger.png";
 import styles from "./AsteroidItem.module.css";
 
 export const AsteroidItem: FC<AsteroidItemProps> = ({
@@ -29,12 +30,12 @@ export const AsteroidItem: FC<AsteroidItemProps> = ({
 	};
 
 	return (
-		<Component className={cn(styles.asteroidItem, className)} key={data.id}>
+		<Component className={cn(styles.asteroidItem, className)}>
 			<div className={styles.date}>{formatDate(date)}</div>
 			<div className={styles.info}>
 				<div className={styles.distance}>
 					<span>
-						{formatDistance(
+						{formatNum(
 							data.close_approach_data[0].miss_distance[measurement],
 							measurement
 						)}
@@ -51,7 +52,7 @@ export const AsteroidItem: FC<AsteroidItemProps> = ({
 					/>
 					<div className={styles.right}>
 						<Htag className={styles.name} tag="h4">
-							{data.name}
+							<Link href={`/asteroids/${data.id}`}>{data.name}</Link>
 						</Htag>
 						<span className={styles.diameter}>
 							Ø{" "}

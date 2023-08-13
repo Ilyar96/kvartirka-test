@@ -1,0 +1,12 @@
+.root {
+	max-width: max-content;
+}
+
+.bottom {
+	opacity: 0;
+	height: 1px;
+}
+
+.spinner {
+	margin-top: 1rem;
+}

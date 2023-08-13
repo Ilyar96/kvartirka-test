@@ -1,3 +1,7 @@
+export interface AsteroidProps extends Record<string, unknown> {
+	asteroid: Asteroid;
+}
+
 export interface GetAllNeoAsteroidQuery {
 	start_date?: string;
 	end_date?: string;
@@ -17,7 +21,7 @@ export interface Asteroid {
 	absolute_magnitude_h: number;
 	estimated_diameter: EstimatedDiameter;
 	is_potentially_hazardous_asteroid: boolean;
-	close_approach_data: CloseApproachDaum[];
+	close_approach_data: CloseApproachData[];
 	orbital_data: OrbitalData;
 	is_sentry_object: boolean;
 }
@@ -53,7 +57,7 @@ export interface Feet {
 	estimated_diameter_max: number;
 }
 
-export interface CloseApproachDaum {
+export interface CloseApproachData {
 	close_approach_date: string;
 	close_approach_date_full: string;
 	epoch_date_close_approach: number;

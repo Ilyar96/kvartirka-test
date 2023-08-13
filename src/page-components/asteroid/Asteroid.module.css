@@ -1,0 +1,12 @@
+.size {
+	margin-top: 0.5rem;
+}
+
+.listTitle {
+	margin-top: 1.5rem;
+}
+
+.danger {
+	margin-top: 0.5rem;
+	object-fit: contain;
+}

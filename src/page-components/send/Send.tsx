@@ -10,7 +10,6 @@ export const SendPage = () => {
 			title="Заказ отправлен!"
 			isNeedCart={false}
 			isNeedPaginate={false}
-			isSendPage={true}
 		/>
 	);
 };

@@ -1,9 +1,9 @@
 import { declinationOfNum } from ".";
 import { MeasurementValue } from "../@types/common";
 
-export const formatDistance = (
+export const formatNum = (
 	distance: string | number,
-	measurement: MeasurementValue
+	measurement: MeasurementValue | "kilometers-per-hour"
 ) => {
 	if (isNaN(+distance)) {
 		throw new Error("Incorrect data");
@@ -15,6 +15,12 @@ export const formatDistance = (
 	let suffix = "";
 
 	switch (measurement) {
+		case "kilometers":
+			suffix = "км";
+			break;
+		case "kilometers-per-hour":
+			suffix = "км/час";
+			break;
 		case "kilometers":
 			suffix = "км";
 			break;

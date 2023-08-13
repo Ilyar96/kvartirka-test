@@ -5,5 +5,4 @@ export interface MainBlockProps {
 	title: string;
 	isNeedCart?: boolean;
 	isNeedPaginate?: boolean;
-	isSendPage?: boolean;
 }
