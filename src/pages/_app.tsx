@@ -1,11 +1,17 @@
+import Head from "next/head";
+import type { AppProps } from "next/app";
+import NextNProgress from "nextjs-progressbar";
 import { CartContextProvider } from "@/context/CartContext";
 import "@/styles/globals.css";
-import type { AppProps } from "next/app";
-import Head from "next/head";
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
-		<CartContextProvider>
+		<>
+			<NextNProgress
+				color="#F86600"
+				height={4}
+				options={{ showSpinner: false }}
+			/>
 			<Head>
 				<title>
 					Онлайн-сервис по мониторингу и уничтожению опасных астероидов
@@ -14,7 +20,9 @@ export default function App({ Component, pageProps }: AppProps) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<Component {...pageProps} />
-		</CartContextProvider>
+			<CartContextProvider>
+				<Component {...pageProps} />
+			</CartContextProvider>
+		</>
 	);
 }
