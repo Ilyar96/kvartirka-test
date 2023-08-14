@@ -75,6 +75,10 @@
 	letter-spacing: 0.0625rem;
 }
 
+.btn:disabled {
+	opacity: 1;
+}
+
 .btn.added {
 	color: var(--white-base);
 	background: var(--orange-base);

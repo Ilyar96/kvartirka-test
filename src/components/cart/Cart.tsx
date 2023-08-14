@@ -23,7 +23,11 @@ export const Cart: FC = () => {
 					{declinationOfNum(count, ["астероид", "астероида", "астероидов"])}
 				</div>
 			</div>
-			<Button className={styles.btn} onClick={onClick}>
+			<Button
+				className={styles.btn}
+				onClick={onClick}
+				disabled={cartItems.length === 0}
+			>
 				Отправить
 			</Button>
 		</div>

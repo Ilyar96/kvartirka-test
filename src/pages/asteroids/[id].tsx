@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import Head from "next/head";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import neoAsteroidService from "@/services/neoAsteroidService";
 import { AsteroidProps } from "@/@types/asteroid";
@@ -6,7 +7,14 @@ import { AsteroidPage } from "@/page-components";
 import { withLayout } from "@/hok";
 
 const Asteroid: FC<AsteroidProps> = ({ asteroid }) => {
-	return <AsteroidPage asteroid={asteroid} />;
+	return (
+		<>
+			<Head>
+				<title>{`Астероид ${asteroid.name}`}</title>
+			</Head>
+			<AsteroidPage asteroid={asteroid} />
+		</>
+	);
 };
 
 export const getServerSideProps: GetServerSideProps<AsteroidProps> = async (
