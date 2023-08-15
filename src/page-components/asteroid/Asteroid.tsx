@@ -1,16 +1,17 @@
 import React, { FC, useState } from "react";
 import Image from "next/image";
 import { AsteroidProps } from "@/@types/asteroid";
+import { AsteroidApproachList } from "@/components";
 import { Container, Htag } from "@/components/ui";
+import { ASTEROIDS_PER_PAGE } from "@/constants";
 import dangerUrl from "@/assets/img/danger.png";
 import styles from "./Asteroid.module.css";
-import { AsteroidApproachList } from "../../components/asteroid-approach-list/AsteroidApproachList";
 
 export const AsteroidPage: FC<AsteroidProps> = ({ asteroid }) => {
 	const [page, setPage] = useState(1);
 	const paginatedApproachList = asteroid.close_approach_data.slice(
 		0,
-		page * 10
+		page * ASTEROIDS_PER_PAGE
 	);
 	const minDiameter = asteroid.estimated_diameter.meters.estimated_diameter_min;
 	const maxDiameter = asteroid.estimated_diameter.meters.estimated_diameter_max;
@@ -21,7 +22,7 @@ export const AsteroidPage: FC<AsteroidProps> = ({ asteroid }) => {
 	};
 
 	return (
-		<div>
+		<section>
 			<Container>
 				<Htag tag="h1">{asteroid.name}</Htag>
 
@@ -53,6 +54,6 @@ export const AsteroidPage: FC<AsteroidProps> = ({ asteroid }) => {
 					}
 				/>
 			</Container>
-		</div>
+		</section>
 	);
 };

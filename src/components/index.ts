@@ -4,3 +4,4 @@ export * from "./cart/Cart";
 export * from "./main-block/MainBlock";
 export * from "./measurement-tabs/MeasurementTabs";
 export * from "./approach-item/ApproachItem";
+export * from "./asteroid-approach-list/AsteroidApproachList";
